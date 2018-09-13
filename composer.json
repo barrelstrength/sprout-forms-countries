@@ -1,0 +1,43 @@
+{
+    "name": "barrelstrength/sprout-forms-countries",
+    "description": "Countries Field for Sprout Forms",
+    "type": "craft-plugin",
+    "version": "1.0.4",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "Countries"
+    ],
+    "support": {
+        "docs": "https://github.com/barrelstrength/craft-sprout-forms-countries/blob/master/README.md",
+        "issues": "https://github.com/barrelstrength/craft-sprout-forms-countries/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Barrel Strength",
+            "homepage": "https://www.barrelstrengthdesign.com/"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0",
+        "barrelstrength/sprout-forms": "^3.0.0-beta.11"
+    },
+    "autoload": {
+        "psr-4": {
+          "barrelstrength\\sproutformscountries\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Countries Field for Sprout Forms",
+        "handle": "sprout-forms-countries",
+        "developer": "Barrel Strength",
+        "developerUrl": "https://barrelstrengthdesign.com",
+        "documentationUrl": "https://github.com/barrelstrength/craft-sprout-forms-countries/blob/master/README.md",
+        "changelogUrl": "https://github.com/barrelstrength/craft-sprout-forms-countries/blob/master/CHANGELOG.md",
+        "downloadUrl": "https://github.com/barrelstrength/craft-sprout-forms-countries/archive/master.zip",
+        "class": "barrelstrength\\sproutformscountries\\SproutFormsCountries"
+    }
+}

@@ -58,7 +58,13 @@ class Countries extends FormField implements PreviewableFieldInterface
      */
     public function getSvgIconPath()
     {
-        return '@sproutformscountriesicons/globe.svg';
+        $icons = [
+            '@sproutformscountriesicons/globe-africa.svg',
+            '@sproutformscountriesicons/globe-americas.svg',
+            '@sproutformscountriesicons/globe-asia.svg',
+        ];
+
+        return $icons[array_rand($icons)];
     }
 
     /**
@@ -73,7 +79,7 @@ class Countries extends FormField implements PreviewableFieldInterface
 
         $commonCountries = $this->commonCountries;
 
-        if (count($options) && $commonCountries !== null) {
+        if (count($options) && is_array($commonCountries) && count($commonCountries)) {
             foreach ($options as $key => $label) {
                 if (in_array($key, $commonCountries)) {
                     $this->moveToTop($options, $key);
@@ -117,10 +123,13 @@ class Countries extends FormField implements PreviewableFieldInterface
      */
     public function getExampleInputHtml()
     {
-        return Craft::$app->getView()->renderTemplate('sprout-forms-countries/_integrations/sproutforms/formtemplates/fields/countries/example',
+        $options = ['' => Craft::t('sprout-forms-countries', 'Select...') ] + $this->options;
+
+        return Craft::$app->getView()->renderTemplate(
+            'sprout-forms-countries/_integrations/sproutforms/formtemplates/fields/countries/example',
             [
                 'field' => $this,
-                'options' => $this->options
+                'options' => $options
             ]
         );
     }
@@ -134,6 +143,21 @@ class Countries extends FormField implements PreviewableFieldInterface
     public function getFrontEndInputHtml($value, array $renderingOptions = null): string
     {
         $commonCountries = $this->getCommonCountries();
+
+        $selectOption = [ '' => Craft::t('sprout-forms-countries', 'Select...') ];
+
+        // Add a Select... option to the beginning of the list
+        if ($commonCountries) {
+            $commonCountries = $selectOption + $commonCountries;
+        } else {
+            $this->options = $selectOption + $this->options;
+        }
+
+        // Add a spacer to the end of the list
+        // @todo - make sure we validate the submission to match a country so this can't be selected
+        if ($commonCountries) {
+            $commonCountries['--'] = '--';
+        }
 
         $rendered = Craft::$app->getView()->renderTemplate(
             'countries/input',
@@ -182,7 +206,8 @@ class Countries extends FormField implements PreviewableFieldInterface
         $options = [];
 
         $commonCountries = $this->commonCountries;
-        if (count($commonCountries)) {
+
+        if (is_array($commonCountries) && count($commonCountries)) {
             foreach ($commonCountries as $code) {
                 $options[$code] = $addressHelper->getCountryNameByCode($code);
             }

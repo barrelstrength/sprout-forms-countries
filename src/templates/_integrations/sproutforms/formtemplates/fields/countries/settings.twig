@@ -1,21 +1,31 @@
 {% import "_includes/forms" as forms %}
 
 {{ forms.selectField({
-    label: "Default Country"|t,
-    instructions: "The Country that should be selected by default.",
+    label: "Default Country"|t('sprout-forms-countries'),
+    instructions: "The country that should be selected by default."|t('sprout-forms-countries'),
     id: 'defaultCountry',
     name: 'defaultCountry',
-    options: {'':'Select...'}|merge(options),
+    options: { '' : 'Select...'|t('sprout-forms-countries') }|merge(options),
     value: field.defaultCountry
 }) }}
 
 <div class="sproutform-field-common-countries">
     {{ forms.checkboxGroupField({
-        label: "Common Countries"|t,
-        instructions: "Move the chosen countries to the top of the dropdown.",
+        label: "Common Countries"|t('sprout-forms-countries'),
+        instructions: "Highlight these countries at the top of the country dropdown."|t('sprout-forms-countries'),
         id: 'commonCountries',
         name: 'commonCountries',
         options: options,
         values: field.commonCountries
     }) }}
 </div>
+
+<style>
+    .sproutform-field-common-countries .checkbox-group {
+        overflow-y: scroll;
+        height: 200px;
+        padding: 5px 10px;
+        border: 1px solid rgba(0, 0, 20, 0.1);
+        border-radius: 2px;
+    }
+</style>

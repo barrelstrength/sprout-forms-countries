@@ -27,7 +27,6 @@
             <option value="{{ optionValue }}"
                     {% if optionValue == value %}selected{% endif %}>{{ optionLabel }}</option>
         {% endfor %}
-        <option>....</option>
     {% endif %}
 
     {%- for key, option in options -%}

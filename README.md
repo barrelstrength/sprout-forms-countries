@@ -1,6 +1,6 @@
-# Country Field for Sprout Forms
+# Countries Field for Sprout Forms
 
-A custom front-end Country Field for [Sprout Forms](https://github.com/barrelstrength/craft-sprout-forms).
+A custom front-end Countries Field for [Sprout Forms](https://github.com/barrelstrength/craft-sprout-forms).
 
 ## Installation
 

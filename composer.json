@@ -8,7 +8,8 @@
         "cms",
         "craftcms",
         "craft-plugin",
-        "Countries"
+        "countries",
+        "country"
     ],
     "support": {
         "docs": "https://github.com/barrelstrength/craft-sprout-forms-countries/blob/master/README.md",

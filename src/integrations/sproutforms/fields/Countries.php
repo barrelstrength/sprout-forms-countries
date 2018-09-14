@@ -38,7 +38,7 @@ class Countries extends FormField implements PreviewableFieldInterface
 
     public function init()
     {
-        if (is_null($this->options)){
+        if (is_null($this->options)) {
             $this->options = $this->getOptions();
         }
 
@@ -123,7 +123,7 @@ class Countries extends FormField implements PreviewableFieldInterface
      */
     public function getExampleInputHtml()
     {
-        $options = ['' => Craft::t('sprout-forms-countries', 'Select...') ] + $this->options;
+        $options = ['' => Craft::t('sprout-forms-countries', 'Select...')] + $this->options;
 
         return Craft::$app->getView()->renderTemplate(
             'sprout-forms-countries/_integrations/sproutforms/formtemplates/fields/countries/example',
@@ -144,7 +144,7 @@ class Countries extends FormField implements PreviewableFieldInterface
     {
         $commonCountries = $this->getCommonCountries();
 
-        $selectOption = [ '' => Craft::t('sprout-forms-countries', 'Select...') ];
+        $selectOption = ['' => Craft::t('sprout-forms-countries', 'Select...')];
 
         // Add a Select... option to the beginning of the list
         if ($commonCountries) {
@@ -180,7 +180,7 @@ class Countries extends FormField implements PreviewableFieldInterface
     public function getTemplatesPath()
     {
         return Craft::getAlias('@barrelstrength/sproutformscountries/templates/_integrations/sproutforms/formtemplates/fields/');
-    } 
+    }
 
     /**
      * Return Countries as options for select field
@@ -198,6 +198,7 @@ class Countries extends FormField implements PreviewableFieldInterface
 
     /**
      * Format common countries setting values with country names
+     *
      * @return array
      */
     private function getCommonCountries()
@@ -218,11 +219,13 @@ class Countries extends FormField implements PreviewableFieldInterface
 
     /**
      * Move selected countries to the top of the dropdown
+     *
      * @param $array
      * @param $key
      */
-    private function moveToTop(&$array, $key) {
-        $temp = array($key => $array[$key]);
+    private function moveToTop(&$array, $key)
+    {
+        $temp = [$key => $array[$key]];
         unset($array[$key]);
         $array = $temp + $array;
     }

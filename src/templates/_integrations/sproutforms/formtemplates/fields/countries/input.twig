@@ -7,35 +7,35 @@
 {%- set dataAttributes = null %}
 {%- set data = renderingOptions.data ?? null %}
 {%- for key, dataValue in data %}
-{%- set dataAttributes = dataAttributes ~ ' data-'~key~'="'~dataValue~'"' %}
+    {%- set dataAttributes = dataAttributes ~ ' data-'~key~'="'~dataValue~'"' %}
 {%- endfor -%}
 
 {% spaceless %}
-<select
-        {%- if name %} name="{{ name }}"{% endif %}
-        {%- if id %} id="{{ id }}"{% endif %}
-        {%- if class %} class="{{ class }}"{% endif %}
-        {%- if required %} required aria-required="true"{% endif %}
-        {%- if hasInstructions %} aria-describedby="{{ field.getNamespace() }}-{{ id }}-instructions"{% endif %}
-        {{- dataAttributes|raw -}}
->
-    {% if commonCountries is not empty %}
-        {%- for key, option in commonCountries -%}
+    <select
+            {%- if name %} name="{{ name }}"{% endif %}
+            {%- if id %} id="{{ id }}"{% endif %}
+            {%- if class %} class="{{ class }}"{% endif %}
+            {%- if required %} required aria-required="true"{% endif %}
+            {%- if hasInstructions %} aria-describedby="{{ field.getNamespace() }}-{{ id }}-instructions"{% endif %}
+            {{- dataAttributes|raw -}}
+    >
+        {% if commonCountries is not empty %}
+            {%- for key, option in commonCountries -%}
+                {%- set optionLabel = option -%}
+                {%- set optionValue = key -%}
+
+                <option value="{{ optionValue }}"
+                        {% if optionValue == value %}selected{% endif %}>{{ optionLabel }}</option>
+            {% endfor %}
+        {% endif %}
+
+        {%- for key, option in options -%}
+
             {%- set optionLabel = option -%}
             {%- set optionValue = key -%}
 
             <option value="{{ optionValue }}"
                     {% if optionValue == value %}selected{% endif %}>{{ optionLabel }}</option>
         {% endfor %}
-    {% endif %}
-
-    {%- for key, option in options -%}
-
-    {%- set optionLabel = option -%}
-    {%- set optionValue = key -%}
-
-    <option value="{{ optionValue }}"
-            {% if optionValue == value %}selected{% endif %}>{{ optionLabel }}</option>
-    {% endfor %}
-</select>
+    </select>
 {% endspaceless %}

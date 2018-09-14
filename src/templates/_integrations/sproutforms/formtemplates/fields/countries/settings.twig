@@ -1,0 +1,21 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.selectField({
+    label: "Default Country"|t,
+    instructions: "The Country that should be selected by default.",
+    id: 'defaultCountry',
+    name: 'defaultCountry',
+    options: {'':'Select...'}|merge(options),
+    value: field.defaultCountry
+}) }}
+
+<div class="sproutform-field-common-countries">
+    {{ forms.checkboxGroupField({
+        label: "Common Countries"|t,
+        instructions: "Move the chosen countries to the top of the dropdown.",
+        id: 'commonCountries',
+        name: 'commonCountries',
+        options: options,
+        values: field.commonCountries
+    }) }}
+</div>

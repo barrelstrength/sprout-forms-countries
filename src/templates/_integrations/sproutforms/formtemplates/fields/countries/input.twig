@@ -19,6 +19,17 @@
         {%- if hasInstructions %} aria-describedby="{{ field.getNamespace() }}-{{ id }}-instructions"{% endif %}
         {{- dataAttributes|raw -}}
 >
+    {% if commonCountries is not empty %}
+        {%- for key, option in commonCountries -%}
+            {%- set optionLabel = option -%}
+            {%- set optionValue = key -%}
+
+            <option value="{{ optionValue }}"
+                    {% if optionValue == value %}selected{% endif %}>{{ optionLabel }}</option>
+        {% endfor %}
+        <option>....</option>
+    {% endif %}
+
     {%- for key, option in options -%}
 
     {%- set optionLabel = option -%}

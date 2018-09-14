@@ -71,6 +71,16 @@ class Countries extends FormField implements PreviewableFieldInterface
     {
         $options = $this->getOptions();
 
+        $commonCountries = $this->commonCountries;
+
+        if (count($options) && $commonCountries !== null) {
+            foreach ($options as $key => $label) {
+                if (in_array($key, $commonCountries)) {
+                    $this->moveToTop($options, $key);
+                }
+            }
+        }
+
         $rendered = Craft::$app->getView()->renderTemplate(
             'sprout-forms-countries/_integrations/sproutforms/formtemplates/fields/countries/settings',
             [
@@ -123,12 +133,15 @@ class Countries extends FormField implements PreviewableFieldInterface
      */
     public function getFrontEndInputHtml($value, array $renderingOptions = null): string
     {
+        $commonCountries = $this->getCommonCountries();
+
         $rendered = Craft::$app->getView()->renderTemplate(
             'countries/input',
             [
                 'name' => $this->handle,
                 'value' => $value ?? $this->defaultCountry,
                 'field' => $this,
+                'commonCountries' => $commonCountries,
                 'options' => $this->options,
                 'renderingOptions' => $renderingOptions
             ]
@@ -157,5 +170,35 @@ class Countries extends FormField implements PreviewableFieldInterface
         $countries = $addressHelper->getCountries();
 
         return $countries;
+    }
+
+    /**
+     * Format common countries setting values with country names
+     * @return array
+     */
+    private function getCommonCountries()
+    {
+        $addressHelper = new AddressHelper();
+        $options = [];
+
+        $commonCountries = $this->commonCountries;
+        if (count($commonCountries)) {
+            foreach ($commonCountries as $code) {
+                $options[$code] = $addressHelper->getCountryNameByCode($code);
+            }
+        }
+
+        return $options;
+    }
+
+    /**
+     * Move selected countries to the top of the dropdown
+     * @param $array
+     * @param $key
+     */
+    private function moveToTop(&$array, $key) {
+        $temp = array($key => $array[$key]);
+        unset($array[$key]);
+        $array = $temp + $array;
     }
 }

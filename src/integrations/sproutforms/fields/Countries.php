@@ -2,11 +2,12 @@
 
 namespace barrelstrength\sproutformscountries\integrations\sproutforms\fields;
 
+use barrelstrength\sproutbase\app\fields\services\Address;
+use CommerceGuys\Intl\Country\CountryRepository;
 use Craft;
 use craft\helpers\Template as TemplateHelper;
 use craft\base\ElementInterface;
 use craft\base\PreviewableFieldInterface;
-use barrelstrength\sproutbase\app\fields\helpers\AddressHelper;
 use barrelstrength\sproutforms\base\FormField;
 
 /**
@@ -189,9 +190,9 @@ class Countries extends FormField implements PreviewableFieldInterface
      */
     private function getOptions()
     {
-        $addressHelper = new AddressHelper();
+        $countryRepository = new CountryRepository();
 
-        $countries = $addressHelper->getCountries();
+        $countries = $countryRepository->getList(Address::DEFAULT_LANGUAGE);
 
         return $countries;
     }
@@ -203,14 +204,14 @@ class Countries extends FormField implements PreviewableFieldInterface
      */
     private function getCommonCountries()
     {
-        $addressHelper = new AddressHelper();
+        $countryRepository = new CountryRepository();
         $options = [];
 
         $commonCountries = $this->commonCountries;
 
         if (is_array($commonCountries) && count($commonCountries)) {
             foreach ($commonCountries as $code) {
-                $options[$code] = $addressHelper->getCountryNameByCode($code);
+                $options[$code] = $countryRepository->get($code)->getName();
             }
         }
 

@@ -2,7 +2,7 @@
 
 namespace barrelstrength\sproutformscountries\integrations\sproutforms\fields;
 
-use barrelstrength\sproutbase\app\fields\services\Address;
+use barrelstrength\sproutbasefields\services\Address;
 use CommerceGuys\Intl\Country\CountryRepository;
 use Craft;
 use craft\helpers\Template as TemplateHelper;

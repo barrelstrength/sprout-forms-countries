@@ -57,7 +57,7 @@ class Countries extends FormField implements PreviewableFieldInterface
     /**
      * @return string
      */
-    public function getSvgIconPath()
+    public function getSvgIconPath(): string
     {
         $icons = [
             '@sproutformscountriesicons/globe-africa.svg',
@@ -74,7 +74,7 @@ class Countries extends FormField implements PreviewableFieldInterface
      * @throws \Twig_Error_Loader
      * @throws \yii\base\Exception
      */
-    public function getSettingsHtml()
+    public function getSettingsHtml(): string
     {
         $options = $this->getOptions();
 
@@ -122,7 +122,7 @@ class Countries extends FormField implements PreviewableFieldInterface
      * @throws \Twig_Error_Loader
      * @throws \yii\base\Exception
      */
-    public function getExampleInputHtml()
+    public function getExampleInputHtml(): string
     {
         $options = ['' => Craft::t('sprout-forms-countries', 'Select...')] + $this->options;
 
@@ -141,7 +141,7 @@ class Countries extends FormField implements PreviewableFieldInterface
      * @throws \Twig_Error_Loader
      * @throws \yii\base\Exception
      */
-    public function getFrontEndInputHtml($value, array $renderingOptions = null): string
+    public function getFrontEndInputHtml($value, array $renderingOptions = null): \Twig_Markup
     {
         $commonCountries = $this->getCommonCountries();
 
@@ -178,7 +178,7 @@ class Countries extends FormField implements PreviewableFieldInterface
     /**
      * @inheritdoc
      */
-    public function getTemplatesPath()
+    public function getTemplatesPath(): string
     {
         return Craft::getAlias('@barrelstrength/sproutformscountries/templates/_integrations/sproutforms/formtemplates/fields/');
     }

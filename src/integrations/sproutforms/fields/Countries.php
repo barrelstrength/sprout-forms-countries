@@ -57,7 +57,7 @@ class Countries extends FormField implements PreviewableFieldInterface
     /**
      * @return string
      */
-    public function getSvgIconPath()
+    public function getSvgIconPath(): string
     {
         $icons = [
             '@sproutformscountriesicons/globe-africa.svg',

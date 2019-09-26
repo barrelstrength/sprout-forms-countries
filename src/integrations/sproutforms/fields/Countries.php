@@ -4,6 +4,7 @@ namespace barrelstrength\sproutformscountries\integrations\sproutforms\fields;
 
 use barrelstrength\sproutbasefields\services\Address;
 use CommerceGuys\Intl\Country\CountryRepository;
+use craft\fields\PlainText as CraftPlainText;
 use Craft;
 use craft\helpers\Template as TemplateHelper;
 use craft\base\ElementInterface;
@@ -216,6 +217,16 @@ class Countries extends FormField implements PreviewableFieldInterface
         }
 
         return $options;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getCompatibleCraftFieldTypes(): array
+    {
+        return [
+            CraftPlainText::class
+        ];
     }
 
     /**

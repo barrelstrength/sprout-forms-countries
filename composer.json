@@ -2,7 +2,7 @@
     "name": "barrelstrength/sprout-forms-countries",
     "description": "Countries Field for Sprout Forms",
     "type": "craft-plugin",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "keywords": [
         "craft",
         "cms",
@@ -24,7 +24,7 @@
     ],
     "require": {
         "craftcms/cms": "^3.1.0",
-        "barrelstrength/sprout-forms": "^3.0.0-beta.47"
+        "barrelstrength/sprout-forms": "^3.4.1"
     },
     "autoload": {
         "psr-4": {

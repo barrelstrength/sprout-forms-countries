@@ -1,5 +1,10 @@
 # Countries Field for Sprout Forms
 
+## 1.0.4 - 2020-04-07
+
+### Fixed
+- Fixed Country Repository namespace
+
 ## 1.0.3 - 2019-09-26
 
 ### Added
@@ -7,7 +12,6 @@
 
 ### Changed
 - Updated barrelstrength/sprout-forms requirement v3.4.1
-
 
 ## 1.0.2 - 2019-03-18
 

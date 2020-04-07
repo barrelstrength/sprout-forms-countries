@@ -3,7 +3,7 @@
 namespace barrelstrength\sproutformscountries\integrations\sproutforms\fields;
 
 use barrelstrength\sproutbasefields\services\Address;
-use CommerceGuys\Intl\Country\CountryRepository;
+use CommerceGuys\Addressing\Country\CountryRepository;
 use craft\fields\PlainText as CraftPlainText;
 use Craft;
 use craft\helpers\Template as TemplateHelper;

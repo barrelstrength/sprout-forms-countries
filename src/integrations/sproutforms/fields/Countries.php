@@ -3,6 +3,7 @@
 namespace barrelstrength\sproutformscountries\integrations\sproutforms\fields;
 
 use barrelstrength\sproutbasefields\services\Address;
+use barrelstrength\sproutforms\elements\Entry;
 use CommerceGuys\Addressing\Country\CountryRepository;
 use craft\fields\PlainText as CraftPlainText;
 use Craft;
@@ -142,7 +143,7 @@ class Countries extends FormField implements PreviewableFieldInterface
      * @throws \Twig_Error_Loader
      * @throws \yii\base\Exception
      */
-    public function getFrontEndInputHtml($value, array $renderingOptions = null): \Twig_Markup
+    public function getFrontEndInputHtml($value, Entry $entry, array $renderingOptions = null): \Twig_Markup
     {
         $commonCountries = $this->getCommonCountries();
 
@@ -167,6 +168,7 @@ class Countries extends FormField implements PreviewableFieldInterface
                 'name' => $this->handle,
                 'value' => $value ?? $this->defaultCountry,
                 'field' => $this,
+                'entry' => $entry,
                 'commonCountries' => $commonCountries,
                 'options' => $this->options,
                 'renderingOptions' => $renderingOptions

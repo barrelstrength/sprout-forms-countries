@@ -1,5 +1,11 @@
 # Countries Field for Sprout Forms
 
+## 1.1.0 - 2020-05-25
+
+### Changed
+- Improved rendering options support
+- Updated barrelstrength/sprout-forms requirement v3.12.0
+
 ## 1.0.4 - 2020-04-07
 
 ### Fixed
